@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-space({height, width}) {
-  return SizedBox(
-    height: height,
-    width: width,
+divider() {
+  return const Divider(
+    thickness: 1,
+    height: 0,
   );
 }

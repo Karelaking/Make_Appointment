@@ -60,7 +60,7 @@ class _RootState extends State<Root> {
             context,
             CupertinoPageRoute(
               builder: (context) {
-                return AddAppointments();
+                return const AddAppointments();
               },
             ),
           );

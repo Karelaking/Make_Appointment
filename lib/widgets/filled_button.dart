@@ -21,7 +21,7 @@ class FilledButtons extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          onPressed;
+          onPressed();
         },
         child: Text(text).paddingSymmetric(vertical: 15),
       ).paddingSymmetric(horizontal: 10, vertical: 10),

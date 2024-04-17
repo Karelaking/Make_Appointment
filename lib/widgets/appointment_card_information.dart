@@ -2,25 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeappointment/constants/app_icon_constants.dart';
-import 'package:makeappointment/controllers/appointment_controller.dart';
+import 'package:makeappointment/models/appointment_model.dart';
 import 'package:makeappointment/pages/add_appointments.dart';
 import 'package:makeappointment/widgets/importance_status_indicator.dart';
 
 class AppointmentCardInformation extends StatelessWidget {
-  AppointmentCardInformation(
-      {super.key,
-      required this.title,
-      required this.date,
-      required this.time,
-      required this.location,
-      required this.index});
+  const AppointmentCardInformation({
+    super.key,
+    required this.appointment,
+  });
 
-  final String title;
-  final String date;
-  final String time;
-  final String location;
-  final int index;
-  final AppointmentController appointmentController = Get.find();
+  final AppointmentModel appointment;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +26,14 @@ class AppointmentCardInformation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: GoogleFonts.poppins().copyWith(fontSize: 20),
+              //  TODO: add constrains
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.46,
+                child: Text(
+                  "${appointment.firstName} ${appointment.secondName}",
+                  style: GoogleFonts.poppins().copyWith(fontSize: 20),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               CupertinoButton(
                 padding: const EdgeInsets.all(0),
@@ -66,8 +63,9 @@ class AppointmentCardInformation extends StatelessWidget {
                                       CupertinoDialogAction(
                                         isDestructiveAction: true,
                                         onPressed: () {
-                                          appointmentController
-                                              .removeAppointment(index);
+                                          //  TODO:  remove appointment
+                                          appointment.delete();
+                                          Navigator.pop(context);
                                           Navigator.pop(context);
                                         },
                                         child: const Text("Yes"),
@@ -92,7 +90,7 @@ class AppointmentCardInformation extends StatelessWidget {
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) {
-                                    return AddAppointments();
+                                    return const AddAppointments();
                                   },
                                 ),
                               );
@@ -111,7 +109,7 @@ class AppointmentCardInformation extends StatelessWidget {
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) {
-                                    return AddAppointments();
+                                    return const AddAppointments();
                                   },
                                 ),
                               );
@@ -140,11 +138,11 @@ class AppointmentCardInformation extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    date,
+                    appointment.date,
                     style: const TextStyle(fontSize: 10),
                   ),
                   Text(
-                    time,
+                    appointment.time,
                     style: const TextStyle(fontSize: 10),
                   ),
                 ],
@@ -154,9 +152,14 @@ class AppointmentCardInformation extends StatelessWidget {
           Row(
             children: [
               AppIconConstants.location,
-              Text(
-                location,
-              )
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.51,
+                child: Text(
+                  appointment.location,
+                  style: GoogleFonts.poppins(),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ).paddingSymmetric(vertical: 8)
             ],
           )
         ],

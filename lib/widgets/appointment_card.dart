@@ -6,11 +6,12 @@ import 'package:makeappointment/widgets/appointment_card_image.dart';
 import 'package:makeappointment/widgets/appointment_card_information.dart';
 
 class AppointmentCard extends StatelessWidget {
-  const AppointmentCard(
-      {super.key, required this.appointment, required this.index});
+  const AppointmentCard({
+    super.key,
+    required this.appointment,
+  });
 
   final AppointmentModel appointment;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,9 @@ class AppointmentCard extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (context) {
-              return const AppointmentInformation();
+              return AppointmentInformation(
+                appointmentModel: appointment,
+              );
             },
           ),
         );
@@ -41,12 +44,7 @@ class AppointmentCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 9),
                     child: AppointmentCardInformation(
-                      title:
-                          "${appointment.firstName} ${appointment.secondName}",
-                      date: appointment.date,
-                      time: appointment.time,
-                      location: appointment.location,
-                      index: index,
+                      appointment: appointment,
                     ),
                   )
                 ],

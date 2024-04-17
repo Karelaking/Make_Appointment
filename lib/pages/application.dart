@@ -11,6 +11,9 @@ class Application extends StatelessWidget {
       theme: FlexThemeData.light(
         scheme: FlexScheme.verdunHemlock,
       ),
+      darkTheme: FlexThemeData.dark(
+        scheme: FlexScheme.verdunHemlock,
+      ),
       themeMode: ThemeMode.system,
       home: const Root(),
     );
