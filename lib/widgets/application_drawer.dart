@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:makeappointment/constants/app_icon_constants.dart';
+import 'package:makeappointment/widgets/application_drawer_menu_items.dart';
 
 class ApplicationDrawer extends StatelessWidget {
   const ApplicationDrawer({super.key});
@@ -35,78 +36,18 @@ class ApplicationDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Row(
-                  children: [
-                    AppIconConstants.home,
-                    const Text("Home").paddingSymmetric(horizontal: 10)
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Row(
-                  children: [
-                    AppIconConstants.search,
-                    const Text("Search").paddingSymmetric(horizontal: 10)
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Row(
-                  children: [
-                    AppIconConstants.settings,
-                    const Text("Settings").paddingSymmetric(horizontal: 10)
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Row(
-                  children: [
-                    AppIconConstants.account,
-                    const Text("Account").paddingSymmetric(horizontal: 10)
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Row(
-                  children: [
-                    AppIconConstants.feedBack,
-                    const Text("Feedback").paddingSymmetric(horizontal: 10)
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Row(
-                  children: [
-                    AppIconConstants.about,
-                    const Text("About").paddingSymmetric(horizontal: 10)
-                  ],
-                ),
-              ),
-            ),
+            const ApplicationDrawerMenuItems(
+                title: "Home", icon: AppIconConstants.home),
+            const ApplicationDrawerMenuItems(
+                title: "Search", icon: AppIconConstants.search),
+            const ApplicationDrawerMenuItems(
+                title: "Settings", icon: AppIconConstants.settings),
+            const ApplicationDrawerMenuItems(
+                title: "Account", icon: AppIconConstants.account),
+            const ApplicationDrawerMenuItems(
+                title: "Feedback", icon: AppIconConstants.feedBack),
+            const ApplicationDrawerMenuItems(
+                title: "About", icon: AppIconConstants.about),
           ],
         ),
       ),

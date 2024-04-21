@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:makeappointment/constants/app_icon_constants.dart';
 import 'package:makeappointment/controllers/add_appointmment_controller.dart';
 import 'package:makeappointment/controllers/appointment_controller.dart';
@@ -18,6 +19,7 @@ import 'package:makeappointment/widgets/input_field.dart';
 
 class AddAppointments extends StatefulWidget {
   const AddAppointments({super.key, this.appointmentModel});
+
   final AppointmentModel? appointmentModel;
 
   @override
@@ -54,14 +56,21 @@ class _AddAppointmentsState extends State<AddAppointments> {
 
   final appointmentDatabase = AppointmentDatabase.getAppointment();
 
+  final date = DateFormat().add_yMd().format(
+        DateTime.now(),
+      );
+  final time = DateFormat().add_yMd().format(
+        DateTime.now(),
+      );
+
   _addAppointment() {
     appointmentDatabase.add(
       AppointmentModel(
         firstName: firstNameController.text.toString(),
         secondName: secondNameController.text.toString(),
         imageUrl: "",
-        date: "",
-        time: "",
+        date: addAppointmentController.dateOfAppointment.value,
+        time: addAppointmentController.timeOfAppointment.value,
         phone: phoneController.text.toString(),
         email: emailController.text.toString(),
         website: webSiteController.text.toString(),
@@ -79,6 +88,7 @@ class _AddAppointmentsState extends State<AddAppointments> {
 
   @override
   Widget build(BuildContext context) {
+    // debugPrint(DateFormat().add_yMd().format(_dateTime),);
     return Hero(
       tag: "addAppointments",
       child: Scaffold(
@@ -92,7 +102,6 @@ class _AddAppointmentsState extends State<AddAppointments> {
         ),
         body: SingleChildScrollView(
           child: Card(
-            color: Colors.grey.shade100,
             margin: const EdgeInsets.symmetric(vertical: 10),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusDirectional.circular(20),
@@ -175,14 +184,20 @@ class _AddAppointmentsState extends State<AddAppointments> {
                             onPressed: () {
                               DateTimePicker().datePicker(context);
                             },
-                            label: const Text("Date"),
+                            label: Obx(() {
+                              return Text(addAppointmentController
+                                  .dateOfAppointment.value);
+                            }),
                             icon: AppIconConstants.date,
                           ),
                           TextButton.icon(
                             onPressed: () {
                               DateTimePicker().timePicker(context);
                             },
-                            label: const Text("Time"),
+                            label: Obx(() {
+                              return Text(addAppointmentController
+                                  .timeOfAppointment.value);
+                            }),
                             icon: AppIconConstants.time,
                           ),
                         ],

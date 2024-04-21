@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:makeappointment/constants/app_icon_constants.dart';
 
@@ -25,10 +26,17 @@ class ImagePickers extends StatelessWidget {
         child: SizedBox(
           width: double.maxFinite,
           height: MediaQuery.of(context).size.height * 0.3,
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Tap here"), AppIconConstants.pickImage],
+            children: [
+              Text(
+                "Tap here",
+                style: GoogleFonts.poppins()
+                    .copyWith(fontSize: 25, fontWeight: FontWeight.w600),
+              ),
+              AppIconConstants.pickImage.paddingSymmetric(vertical: 15)
+            ],
           ),
         ),
       ),

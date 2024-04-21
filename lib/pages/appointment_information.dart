@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makeappointment/constants/app_icon_constants.dart';
@@ -20,30 +18,41 @@ class AppointmentInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
       appBar: const ApplicationAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            //  Image
             Image(
               width: MediaQuery.of(context).size.width,
               image: const NetworkImage("https://placehold.co/600x400.png"),
               fit: BoxFit.cover,
             ),
+
+            //  Meeting Title
             Text(
               "${appointmentModel.firstName} ${appointmentModel.secondName}",
               style: GoogleFonts.poppins()
                   .copyWith(fontSize: 25, fontWeight: FontWeight.w600),
             ).paddingSymmetric(vertical: 15, horizontal: 15),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.circular(15),
-              ),
-              child: Text(
-                appointmentModel.description,
-                style: GoogleFonts.poppins(),
-              ).paddingSymmetric(vertical: 10, horizontal: 20),
-            ).paddingSymmetric(horizontal: 10, vertical: 5),
+
+            //  Description
+            appointmentModel.description.isNotEmpty
+                ? SizedBox(
+                    width: double.maxFinite,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusDirectional.circular(15),
+                      ),
+                      child: Text(
+                        appointmentModel.description,
+                        style: GoogleFonts.poppins(),
+                      ).paddingSymmetric(vertical: 10, horizontal: 20),
+                    ).paddingSymmetric(horizontal: 10, vertical: 5),
+                  )
+                : const SizedBox(),
+
+            //  Other Information
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadiusDirectional.circular(15),
@@ -52,6 +61,9 @@ class AppointmentInformation extends StatelessWidget {
                 children: [
                   InformationTable(
                       icon: AppIconConstants.phone,
+                      callback: () {
+                        debugPrint("Phone Print");
+                      },
                       title: "Phone No",
                       value: appointmentModel.phone),
                   divider(),

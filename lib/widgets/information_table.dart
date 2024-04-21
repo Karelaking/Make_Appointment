@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InformationTable extends StatelessWidget {
@@ -8,11 +10,13 @@ class InformationTable extends StatelessWidget {
       {super.key,
       required this.title,
       required this.value,
-      required this.icon});
+      required this.icon,
+      this.callback});
 
   final String title;
   final String value;
   final Icon icon;
+  final Callback? callback;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +35,14 @@ class InformationTable extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerRight,
+          transformAlignment: Alignment.centerRight,
           width: MediaQuery.of(context).size.width * 0.5,
-          child: Text(
-            value,
-            style: GoogleFonts.poppins(),
+          child: GestureDetector(
+            onLongPress: callback,
+            child: Text(
+              value,
+              style: GoogleFonts.poppins(),
+            ),
           ),
         ),
       ],

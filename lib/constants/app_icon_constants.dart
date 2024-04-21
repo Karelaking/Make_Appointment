@@ -11,12 +11,16 @@ class AppIconConstants {
         size: MediaQuery.of(context).size.width * 0.05,
       );
   static const menu = Icon(CupertinoIcons.line_horizontal_3_decrease);
-  static const location = Icon(CupertinoIcons.location_solid);
+  static const location = Icon(
+    CupertinoIcons.location_solid,
+    size: 20,
+  );
   static const add = Icon(CupertinoIcons.add);
   static const arrowBack = Icon(CupertinoIcons.back);
   static const date = Icon(CupertinoIcons.calendar);
   static const time = Icon(CupertinoIcons.clock);
   static const dotMenu = Icon(CupertinoIcons.ellipsis);
+  static const dotMenuVertical = Icon(CupertinoIcons.ellipsis_vertical);
   static const delete = Icon(CupertinoIcons.delete_simple);
   static const edit = Icon(CupertinoIcons.pen);
   static const share = Icon(CupertinoIcons.share);
@@ -26,8 +30,14 @@ class AppIconConstants {
   static const about = Icon(CupertinoIcons.question_circle);
   static const account = Icon(CupertinoIcons.person_alt_circle);
   static const feedBack = Icon(CupertinoIcons.exclamationmark_circle);
-  static const pickImage = Icon(CupertinoIcons.cloud_upload);
+  static const pickImage = Icon(
+    CupertinoIcons.cloud_upload,
+    size: 35,
+  );
   static const phone = Icon(CupertinoIcons.phone);
   static const email = Icon(CupertinoIcons.mail);
   static const webSite = Icon(CupertinoIcons.globe);
+  static const unPined = Icon(CupertinoIcons.pin);
+  static const pined = Icon(CupertinoIcons.pin_fill);
+  static const bell = Icon(CupertinoIcons.bell);
 }

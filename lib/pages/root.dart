@@ -33,6 +33,10 @@ class _RootState extends State<Root> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ApplicationAppBar(
+        actions: [
+          IconButton(onPressed: () {}, icon: AppIconConstants.bell),
+          IconButton(onPressed: () {}, icon: AppIconConstants.dotMenuVertical),
+        ],
         leading: Hero(
           tag: "drawer",
           child: Builder(

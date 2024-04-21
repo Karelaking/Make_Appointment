@@ -26,12 +26,11 @@ class AppointmentCardInformation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //  TODO: add constrains
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.46,
                 child: Text(
                   "${appointment.firstName} ${appointment.secondName}",
-                  style: GoogleFonts.poppins().copyWith(fontSize: 20),
+                  style: GoogleFonts.poppins().copyWith(fontSize: 25),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -44,6 +43,58 @@ class AppointmentCardInformation extends StatelessWidget {
                     builder: (context) {
                       return CupertinoActionSheet(
                         actions: [
+                          // Pin to top
+                          CupertinoActionSheetAction(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                AppIconConstants.unPined,
+                                const Text("Pin")
+                                    .paddingSymmetric(horizontal: 10),
+                              ],
+                            ),
+                          ),
+                          //  Edit
+                          CupertinoActionSheetAction(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return const AddAppointments();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                AppIconConstants.edit,
+                                const Text("Edit")
+                                    .paddingSymmetric(horizontal: 10),
+                              ],
+                            ),
+                          ),
+                          //  Share
+                          CupertinoActionSheetAction(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return const AddAppointments();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                AppIconConstants.share,
+                                const Text("Share")
+                                    .paddingSymmetric(horizontal: 10),
+                              ],
+                            ),
+                          ),
+                          // Delete
                           CupertinoActionSheetAction(
                             onPressed: () {
                               showCupertinoModalPopup(
@@ -84,44 +135,6 @@ class AppointmentCardInformation extends StatelessWidget {
                               ],
                             ),
                           ),
-                          CupertinoActionSheetAction(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) {
-                                    return const AddAppointments();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                AppIconConstants.edit,
-                                const Text("Edit")
-                                    .paddingSymmetric(horizontal: 10),
-                              ],
-                            ),
-                          ),
-                          CupertinoActionSheetAction(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) {
-                                    return const AddAppointments();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                AppIconConstants.share,
-                                const Text("Share")
-                                    .paddingSymmetric(horizontal: 10),
-                              ],
-                            ),
-                          ),
                         ],
                       );
                     },
@@ -134,24 +147,19 @@ class AppointmentCardInformation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const ImportanceStatusIndicator(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    appointment.date,
-                    style: const TextStyle(fontSize: 10),
-                  ),
-                  Text(
-                    appointment.time,
-                    style: const TextStyle(fontSize: 10),
-                  ),
-                ],
+              Text(
+                appointment.date,
+                style: GoogleFonts.poppins().copyWith(fontSize: 12),
+              ),
+              Text(
+                appointment.time,
+                style: GoogleFonts.poppins().copyWith(fontSize: 12),
               )
             ],
           ),
           Row(
             children: [
-              AppIconConstants.location,
+              AppIconConstants.location.paddingOnly(right: 5),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.51,
                 child: Text(
